@@ -2,36 +2,18 @@ package com.example.samuraicase
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.samuraicase.network.service.ApiClient
-import com.example.samuraicase.network.service.pokeurllist.IPokenameList
-import com.example.samuraicase.network.service.pokeurllist.PokenameList
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.lifecycle.ViewModelProviders
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var pokemonService: IPokenameList
-    lateinit var pokenamelist: PokenameList;
+    lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        pokemonService = ApiClient.getClient().create(IPokenameList::class.java)
-        getUrls()
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        mainViewModel.getPokeList(20)
     }
 
 
-    fun getUrls() {
-        val urls = pokemonService.getPokenameList(20)
-        urls.enqueue(object : Callback<PokenameList> {
-            override fun onResponse(call: Call<PokenameList>, response: Response<PokenameList>) {
-                println("onResponse")
-                println(response.body()!!.count.toString())
-            }
-            override fun onFailure(call: Call<PokenameList>, t: Throwable) {
-
-            }
-        })
-    }
 }

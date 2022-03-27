@@ -33,13 +33,9 @@ android {
 
 dependencies {
     def lifeCycleExtensionVersion = '1.1.1'
-    def supportVersion = '28.0.0'
-    def retrofitVersion = '2.3.0'
     def glideVersion = '4.9.0'
     def rxJavaVersion = '2.1.1'
     def roomVersion = '2.2.3'
-    def navVersion = '2.2.1'
-    def preferencesVersion = '1.1.0'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -52,6 +48,9 @@ dependencies {
     // for network request
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.6.2"
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxJavaVersion"
 
     // lifecycle viewmodel
     implementation "android.arch.lifecycle:extensions:$lifeCycleExtensionVersion"
@@ -59,4 +58,7 @@ dependencies {
 
     //glide image network
     implementation "com.github.bumptech.glide:glide:$glideVersion"
+
+    //coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1"
 }

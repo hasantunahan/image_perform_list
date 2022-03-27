@@ -6,14 +6,14 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mainViewModel: MainViewModel
-    private val adapter = MainAdapter(arrayListOf())
-    private val pokemonLimit = 100
+    private var mainAdapter = MainAdapter(arrayListOf())
+    private val pokemonLimit = 42
+    private lateinit var layoutManager: GridLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,15 +25,16 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun setPokemonList() {
-        pokemonRecylerView.layoutManager = GridLayoutManager(applicationContext,3)
-        pokemonRecylerView.adapter = adapter
+        layoutManager = GridLayoutManager(applicationContext, 3)
+        pokemonRecylerView.layoutManager = layoutManager
+        pokemonRecylerView.adapter = mainAdapter
         renderPokemon()
     }
 
     private fun renderPokemon() {
         mainViewModel.pokemonList.observe(this, Observer { pokemon ->
             pokemon?.let {
-                adapter.refreshData(pokemon)
+                mainAdapter.refreshData(pokemon)
                 pokemonRecylerView.visibility = View.VISIBLE
                 progressBarPokemonList.visibility = View.GONE
             }

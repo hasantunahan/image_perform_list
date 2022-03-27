@@ -4,13 +4,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.samuraicase.core.extension.glideWithExtensions
 import com.example.samuraicase.network.service.pokeurllist.Pokemon
+import kotlinx.android.synthetic.main.pokemon_item.view.*
 
-class MainAdapter(val pokeList: ArrayList<Pokemon>) :
+class MainAdapter(private val pokeList: ArrayList<Pokemon>) :
     RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+    }
+
+    fun refreshData(newReqList: List<Pokemon>) {
+        pokeList.clear()
+        pokeList.addAll(newReqList)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,10 +28,15 @@ class MainAdapter(val pokeList: ArrayList<Pokemon>) :
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.itemView.pokemonItemImage.glideWithExtensions(pokeList[position].sprites.other.home.front_default)
+        holder.itemView.pokemonName.text = pokeList[position].name.capitalize()
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return if (pokeList.isEmpty()) {
+            0;
+        } else {
+            pokeList.size
+        }
     }
 }

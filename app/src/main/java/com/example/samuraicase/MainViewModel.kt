@@ -17,7 +17,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     private val pokemonService: IPokemonService =
         ApiClient.getClient().create(IPokemonService::class.java)
     private val disposable = CompositeDisposable()
-    private var pokemonList = MutableLiveData<List<Pokemon>>()
+    var pokemonList = MutableLiveData<List<Pokemon>>()
     var isLoading = MutableLiveData<Boolean>()
     private val errMsg = MutableLiveData<Boolean>()
     private var list = ArrayList<Pokemon>()

@@ -52,10 +52,10 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     }
 
 
-    fun getPokeList(piece: Int) {
+    fun getPokeList(piece: IntRange) {
         list.clear()
         isLoading.value = true
-        for (x in 0..piece) {
+        for (x in piece) {
             getData(x)
         }
     }

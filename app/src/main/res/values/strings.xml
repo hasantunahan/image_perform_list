@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">samuraicase</string>
+    <string name="every_five_seconds_description">New pokemon are loaded every 5 seconds</string>
 </resources>

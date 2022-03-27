@@ -49,7 +49,6 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
             pokemonList.value = list
             isLoading.value = false
         }
-
     }
 
 

@@ -1,4 +1,5 @@
-# image_perform_list
+# Pokemon ImageList  🌱
+used : https://pokeapi.co/
 
 <img align="left" src="ss1.png" width ="300" height="600" >
 <img align="left" src="ss2.png" width ="300" height="600" >
